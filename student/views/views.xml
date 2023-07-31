@@ -1,0 +1,93 @@
+<odoo>
+    <data>
+        <!--     student-->
+
+        <!--     student Tree View -->
+        <record id="student_students_tree" model="ir.ui.view">
+            <field name="name">student.students.tree</field>
+            <field name="model">student.students</field>
+            <field name="arch" type="xml">
+                <tree string="Students">
+                    <field name="name"/>
+                    <field name="age"/>
+                    <field name="classes"/>
+                </tree>
+            </field>
+        </record>
+      
+        <!--     student From View-->
+        <record id="company_student_form" model="ir.ui.view">
+            <field name="name">student.students.form</field>
+            <field name="model">student.students</field>
+            <field name="arch" type="xml">
+                <form string="Students">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="age"/>
+                                <field name="classes"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!--     search student-->
+        <record id="student_search" model="ir.ui.view">
+            <field name="name">student.search</field>
+            <field name="model">student.students</field>
+            <field name="arch" type="xml">
+                <search string="Student">
+                    <field name="name"/>
+                    <field name="age"/>
+                    <field name="classes"/>
+                    <separator/>
+                    <filter name="name" string="Name" domain="[('name', '!=', 'False')]"/>
+                    <separator/>
+                    <filter name="age" string="age" domain="[('age', '!=', 'A')]"/>
+                    <separator/>
+                    <filter name="classes" string="classes" domain="[('classes', '!=', '1')]"/>
+
+                    <group expand="0" string="name">
+                        <filter name="name" string="Name" context="{'group_by':'name'}"/>
+                    </group>
+                    <separator/>
+                    <group expand="0" string="Specialize">
+                        <filter name="age " string="age" context="{'group_by':'age'}"/>
+                    </group>
+                    <separator/>
+                    <group expand="0" string="Specialize">
+                        <filter name="classes" string="classes" context="{'group_by':'classes'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <!--     student Action-->
+        <record id="student_action" model="ir.actions.act_window">
+            <field name="name">Students</field>
+            <field name="res_model">student.students</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create Students
+                </p>
+            </field>
+        </record>
+
+        <!--     Main Menu-->
+        <menuitem id="student_menu_root"
+                  name="Student"
+                  sequence="1"/>
+
+        <!--     Sub Menu-->
+        <menuitem id="students_menu_root"
+                  name="Students"
+                  parent="student.student_menu_root"
+                  action="student_action"
+                  sequence="1"/>
+
+    </data>
+</odoo>
